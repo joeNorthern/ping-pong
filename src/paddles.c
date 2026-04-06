@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
+//testing this rn
+
 extern int Y_AXIS;
 extern int X_AXIS;
 
