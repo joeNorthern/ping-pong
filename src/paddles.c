@@ -1,19 +1,27 @@
-#include <stdio.h>
-#include <SDL2/SDL.h>
+#include "paddles.h"
+#define DEBUG 0
 
 //testing this rn
 
-extern int Y_AXIS;
-extern int X_AXIS;
+SDL_Rect player = {20, 80, 10, 80}; // x, y, w, h
+SDL_Rect enemy = {970, 80, 10, 80}; // x, y, w, h
 
-SDL_Rect player;
-player.w = 10;
-player.h = 80;
-player.x = 20;
-player.y = Y_AXIS/2-80;
-
-void checkPlayerMovements(uint8_t* keys)
+void initPlayer()
 {
-	if(keys[SDL_SCANCODE_W] && player.y >= 0)                player.y -= 10;
-	if(keys[SDL_SCANCODE_S] && player.y <= Y_AXIS - player.h) player.y += 10;
+	player.y = Y_AXIS/2-player.h;
+}
+
+void initEnemy()
+{
+	enemy.y = Y_AXIS/2-enemy.h;
+}
+
+void checkPlayerMovements(const uint8_t* keys)
+{
+	if(keys[SDL_SCANCODE_W] && player.y > 0) player.y -= 10;
+	if(keys[SDL_SCANCODE_S] && player.y < Y_AXIS - player.h) player.y += 10;
+	#ifdef DEBUG
+		printf("\rPLAYER_Y: %d ENEMY_Y %d", player.y, enemy.y);
+		fflush(stdout);
+	#endif
 }
