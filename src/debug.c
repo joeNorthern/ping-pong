@@ -14,3 +14,15 @@ void debugPrint(uint32_t *currentFps, uint32_t *lastFps, int flags)
 		*lastFps = SDL_GetTicks();
 	}
 }
+
+
+// USAGE
+// This debugPrint uses flags that specify what you want to be debugged;
+// either FPS, the Y axis paddle movemets, or both.
+// To use it, simply refer to the declared macros in main.c
+// 
+// cd ../src/main.c
+//
+// The macros should be inserted in the flag parameter.
+//
+// * Notice that debugPrint will disable the player scores print, since it is being replaced by the fflush call.
