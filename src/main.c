@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include <stdint.h>
 #include "../include/paddles.h"
+#include "../include/ball.h"
 
 const int Y_AXIS = 1000;
 const int X_AXIS = 1000;
@@ -28,9 +29,11 @@ int main()
 	uint32_t currentFps = 0;
 
 	const uint8_t* keys = SDL_GetKeyboardState(NULL);
+	short GO_UP = 1;
 
-	initPlayer();
-	initEnemy();
+	adjPlayer(); // adjust player starting pos
+	adjEnemy(); // adjust enemy starting pos
+	adjBall(); // adjust ball starting pos
 
 	while(running)
 	{
@@ -48,15 +51,16 @@ int main()
 			currentFps = 0;
 			lastFps = SDL_GetTicks();	
 		}
+
+		enemyMoving(&GO_UP);
 		
 		SDL_SetRenderDrawColor(render, 0, 0, 0, 255);
 		SDL_RenderClear(render);
 
-		SDL_SetRenderDrawColor(render, 255, 255, 255, 255);
-		SDL_RenderFillRect(render, &player);
+		rendPlayer(render);
+		rendEnemy(render);
+		rendBall(render);
 
-		SDL_SetRenderDrawColor(render, 255, 255, 255, 255);
-		SDL_RenderFillRect(render, &enemy);
 		SDL_RenderPresent(render);
 	}
 	
