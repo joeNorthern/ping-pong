@@ -9,7 +9,7 @@ SDL_Rect ball = {0, 0, 5, 5};
 void adjBall()
 {
 	ball.x = X_AXIS/2-ball.w;
-	ball.y = y_AXIS/2-ball.h;
+	ball.y = Y_AXIS/2-ball.h;
 }
 void rendBall(SDL_Renderer* render)
 {

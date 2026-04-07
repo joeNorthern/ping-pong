@@ -46,8 +46,4 @@ void checkPlayerMovements(const uint8_t* keys)
 {
 	if(keys[SDL_SCANCODE_W] && player.y > 0) player.y -= 10;
 	if(keys[SDL_SCANCODE_S] && player.y < Y_AXIS - player.h) player.y += 10;
-	#ifdef DEBUG
-		printf("\rPLAYER_Y: %d ENEMY_Y %d", player.y, enemy.y);
-		fflush(stdout);
-	#endif
 }

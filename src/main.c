@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include "../include/paddles.h"
 #include "../include/ball.h"
+#include "../include/debug.h"
+#define DEBUG 0
 
 const int Y_AXIS = 1000;
 const int X_AXIS = 1000;
@@ -45,22 +47,23 @@ int main()
 
 		checkPlayerMovements(keys);
 
-		currentFps++;
-		if((SDL_GetTicks() - lastFps) >= 1000)
-		{
-			currentFps = 0;
-			lastFps = SDL_GetTicks();	
-		}
-
 		enemyMoving(&GO_UP);
 		
+		#ifdef DEBUG
+			fpsCheck(&currentFps, &lastFps);
+		#endif
+
 		SDL_SetRenderDrawColor(render, 0, 0, 0, 255);
 		SDL_RenderClear(render);
 
 		rendPlayer(render);
 		rendEnemy(render);
 		rendBall(render);
-
+		
+		#ifdef DEBUG
+			++currentFps;
+			fpsCheck(&currentFps, &lastFps);
+		#endif
 		SDL_RenderPresent(render);
 	}
 	
