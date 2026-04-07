@@ -6,6 +6,7 @@
 
 SDL_Rect player = {20, 0, 10, 120}; // x, y, w, h
 SDL_Rect enemy = {970, 0, 10, 120}; // x, y, w, h
+SDL_Rect separatingLine = {0,0,0,0}; // x, y, w, h
 
 void adjPlayer()
 {
@@ -15,6 +16,13 @@ void adjPlayer()
 void adjEnemy()
 {
 	enemy.y = Y_AXIS/2-enemy.h;
+}
+void adjLine()
+{
+	separatingLine.x = X_AXIS/2;
+	separatingLine.y = (Y_AXIS/2)-(Y_AXIS/2);
+	separatingLine.w = 1;
+	separatingLine.h = Y_AXIS;
 }
 
 void rendPlayer(SDL_Renderer* render)
@@ -27,6 +35,12 @@ void rendEnemy(SDL_Renderer* render)
 {
 	SDL_SetRenderDrawColor(render, COLOR_WHITE);
 	SDL_RenderFillRect(render, &enemy);
+}
+
+void rendLine(SDL_Renderer* render)
+{
+	SDL_SetRenderDrawColor(render, COLOR_WHITE);
+	SDL_RenderFillRect(render, &separatingLine);
 }
 
 void enemyMoving(short *GO_UP)

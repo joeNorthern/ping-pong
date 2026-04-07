@@ -4,6 +4,7 @@
 #include "../include/paddles.h"
 #include "../include/ball.h"
 #include "../include/debug.h"
+#define DEBUG 0
 
 const int Y_AXIS = 1000;
 const int X_AXIS = 1000;
@@ -40,6 +41,7 @@ int main()
 	adjPlayer(); // adjust player starting pos
 	adjEnemy(); // adjust enemy starting pos
 	adjBall(); // adjust ball starting pos
+	adjLine(); // adjust ball starting pos
 
 	while(running)
 	{
@@ -64,15 +66,17 @@ int main()
 		rendPlayer(render);
 		rendEnemy(render);
 		rendBall(render);
+		rendLine(render);
 		
 		#ifdef DEBUG
 			++currentFps;
 			debugPrint(&currentFps, &lastFps, DEBUG_ALL);
 		#endif
+		#ifndef DEBUG
+			printf("\rPLAYER: %d ENEMY: %d", playerScore, enemyScore);
+			fflush(stdout);
+		#endif
 		SDL_RenderPresent(render);
-
-		printf("\rPLAYER: %d ENEMY: %d", playerScore, enemyScore);
-		fflush(stdout);
 	}
 	
 	SDL_DestroyRenderer(render);
