@@ -17,13 +17,6 @@ void adjEnemy()
 {
 	enemy.y = Y_AXIS/2-enemy.h;
 }
-void adjLine()
-{
-	separatingLine.x = X_AXIS/2;
-	separatingLine.y = (Y_AXIS/2)-(Y_AXIS/2);
-	separatingLine.w = 1;
-	separatingLine.h = Y_AXIS;
-}
 
 void rendPlayer(SDL_Renderer* render)
 {
@@ -35,26 +28,6 @@ void rendEnemy(SDL_Renderer* render)
 {
 	SDL_SetRenderDrawColor(render, COLOR_WHITE);
 	SDL_RenderFillRect(render, &enemy);
-}
-
-void rendLine(SDL_Renderer* render)
-{
-	SDL_SetRenderDrawColor(render, COLOR_WHITE);
-	SDL_RenderFillRect(render, &separatingLine);
-}
-
-void enemyMoving(short *GO_UP)
-{
-	if(*GO_UP)
-	{
-		enemy.y -= SPEED;
-		if(enemy.y <= 0) *GO_UP = 0;
-	}
-	else
-	{
-		enemy.y += SPEED;
-		if(enemy.y >= Y_AXIS - enemy.h) *GO_UP = 1;
-	}
 }
 
 void checkPlayerMovements(const uint8_t* keys)

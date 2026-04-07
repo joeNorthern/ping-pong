@@ -4,11 +4,10 @@
 #include "../include/paddles.h"
 #include "../include/ball.h"
 #include "../include/debug.h"
-#define DEBUG 0
+//#define DEBUG 0
 
 const int Y_AXIS = 1000;
 const int X_AXIS = 1000;
-
 
 extern short playerScore;
 extern short enemyScore;
@@ -35,13 +34,11 @@ int main()
 	uint32_t currentFps = 0;
 
 	const uint8_t* keys = SDL_GetKeyboardState(NULL);
-	short GO_UP = 1;
 	short BALL_GO_UP = 1;
 
 	adjPlayer(); // adjust player starting pos
 	adjEnemy(); // adjust enemy starting pos
 	adjBall(); // adjust ball starting pos
-	adjLine(); // adjust ball starting pos
 
 	while(running)
 	{
@@ -66,7 +63,6 @@ int main()
 		rendPlayer(render);
 		rendEnemy(render);
 		rendBall(render);
-		rendLine(render);
 		
 		#ifdef DEBUG
 			++currentFps;
