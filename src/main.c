@@ -1,13 +1,16 @@
-#include <stdio.h>
 #include <SDL2/SDL.h>
+#include <stdio.h>
 #include <stdint.h>
 #include "../include/paddles.h"
 #include "../include/ball.h"
 #include "../include/debug.h"
-#define DEBUG 0
 
 const int Y_AXIS = 1000;
 const int X_AXIS = 1000;
+
+
+extern short playerScore;
+extern short enemyScore;
 
 int main()
 {
@@ -32,6 +35,7 @@ int main()
 
 	const uint8_t* keys = SDL_GetKeyboardState(NULL);
 	short GO_UP = 1;
+	short BALL_GO_UP = 1;
 
 	adjPlayer(); // adjust player starting pos
 	adjEnemy(); // adjust enemy starting pos
@@ -46,11 +50,16 @@ int main()
 				running = 0;
 
 		checkPlayerMovements(keys);
-
-		enemyMoving(&GO_UP);
+		checkEnemyMovements(keys);
 		
+		ballMove();
+
+		ballCollide();
+
 		SDL_SetRenderDrawColor(render, 0, 0, 0, 255);
 		SDL_RenderClear(render);
+		
+		scoreShow();
 
 		rendPlayer(render);
 		rendEnemy(render);
@@ -61,6 +70,9 @@ int main()
 			debugPrint(&currentFps, &lastFps, DEBUG_ALL);
 		#endif
 		SDL_RenderPresent(render);
+
+		printf("\rPLAYER: %d ENEMY: %d", playerScore, enemyScore);
+		fflush(stdout);
 	}
 	
 	SDL_DestroyRenderer(render);

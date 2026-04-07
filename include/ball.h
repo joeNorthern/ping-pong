@@ -10,6 +10,9 @@ extern const int Y_AXIS;
 extern const int X_AXIS;
 
 void adjBall(void);
-void rendBall(SDL_Renderer*);
+void rendBall(SDL_Renderer *);
+void ballMove(void);
+void ballCollide(void);
+void scoreShow(void);
 
 #endif
