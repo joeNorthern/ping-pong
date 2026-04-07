@@ -49,10 +49,6 @@ int main()
 
 		enemyMoving(&GO_UP);
 		
-		#ifdef DEBUG
-			fpsCheck(&currentFps, &lastFps);
-		#endif
-
 		SDL_SetRenderDrawColor(render, 0, 0, 0, 255);
 		SDL_RenderClear(render);
 
@@ -62,7 +58,7 @@ int main()
 		
 		#ifdef DEBUG
 			++currentFps;
-			fpsCheck(&currentFps, &lastFps);
+			debugPrint(&currentFps, &lastFps, DEBUG_ALL);
 		#endif
 		SDL_RenderPresent(render);
 	}
