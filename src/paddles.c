@@ -2,8 +2,6 @@
 #define COLOR_WHITE 255, 255, 255, 255
 #define SPEED 15
 
-//testing this rn
-
 SDL_Rect player = {20, 0, 10, 120}; // x, y, w, h
 SDL_Rect enemy = {970, 0, 10, 120}; // x, y, w, h
 SDL_Rect separatingLine = {0,0,0,0}; // x, y, w, h
