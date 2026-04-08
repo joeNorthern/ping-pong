@@ -4,7 +4,6 @@
 
 SDL_Rect player = {20, 0, 10, 120}; // x, y, w, h
 SDL_Rect enemy = {970, 0, 10, 120}; // x, y, w, h
-SDL_Rect separatingLine = {0,0,0,0}; // x, y, w, h
 
 void adjPlayer()
 {
@@ -36,6 +35,9 @@ void checkPlayerMovements(const uint8_t* keys)
 
 void checkEnemyMovements(const uint8_t* keys)
 {
-	if(keys[SDL_SCANCODE_UP] && enemy.y > 0) enemy.y -= SPEED;
+	if(keys[SDL_SCANCODE_UP]) enemy.y -= SPEED;
 	if(keys[SDL_SCANCODE_DOWN] && enemy.y < Y_AXIS - enemy.h) enemy.y += SPEED;
+
+	if(enemy.y < 0) enemy.y = 0;
+	if(enemy.y > Y_AXIS - enemy.h) enemy.y = Y_AXIS - enemy.h;
 }
