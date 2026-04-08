@@ -1,16 +1,18 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include "ball.h"
-#include "paddles.h"
+#include <stdlib.h>
 #define COLOR_WHITE 255, 255, 255, 255
 #define REDUCEPOWER 50
 
 SDL_Rect ball = {0, 0, 10, 10};
 
-int ballVY;
-int ballVX;
+float ballVY;
+float ballVX;
 short playerScore = 0;
 short enemyScore = 0;
+
+float hitPos;
 
 void adjBall()
 {
@@ -53,8 +55,8 @@ void ballCollide()
 {
 	if(SDL_HasIntersection(&ball, &player))
 	{
-		int hitPos = (player.y + (player.h/2) - ball.y);
-		
+		hitPos = (player.y + ((float)player.h/2) - ball.y);
+
 		if(hitPos > 0)
 		{
 			ballVY += hitPos/REDUCEPOWER;
@@ -67,7 +69,7 @@ void ballCollide()
 		ballVX = -ballVX;
 	} else if(SDL_HasIntersection(&ball, &enemy))
 	{
-		int hitPos = (enemy.y + (enemy.h/2) - enemy.y);
+		hitPos = (enemy.y + ((float)enemy.h/2) - ball.y);
 		
 		if(hitPos > 0)
 		{

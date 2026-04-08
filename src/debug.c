@@ -1,4 +1,5 @@
 #include "debug.h"
+#include "ball.h"
 #include "paddles.h"
 
 void debugPrint(uint32_t *currentFps, uint32_t *lastFps, int flags)
@@ -7,8 +8,9 @@ void debugPrint(uint32_t *currentFps, uint32_t *lastFps, int flags)
 	{
 		putchar('\r');
 		if(flags & DEBUG_FPS_ONLY) printf("FPS: %d ", *currentFps);
-		if(flags & DEBUG_YAXIS_ONLY) printf("PLAYER: %d ENEMY: %d", player.y, enemy.y);
-		printf("        ");
+		if(flags & DEBUG_YAXIS_ONLY) printf("PLAYER: %d ENEMY: %d ", player.y, enemy.y);
+		if(flags & DEBUG_BALL_HITPOS) printf("HIT_POS: %.f BALL_Y: %d ", hitPos, ball.y);
+		printf("                             ");
 		fflush(stdout);
 		*currentFps = 0;
 		*lastFps = SDL_GetTicks();
