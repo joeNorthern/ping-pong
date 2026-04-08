@@ -4,8 +4,6 @@
 
 void debugPrint(uint32_t *currentFps, uint32_t *lastFps, int flags)
 {
-	if((SDL_GetTicks() - *lastFps) >= 1000)
-	{
 		putchar('\r');
 		if(flags & DEBUG_FPS_ONLY) printf("FPS: %d ", *currentFps);
 		if(flags & DEBUG_YAXIS_ONLY) printf("PLAYER: %d ENEMY: %d ", player.y, enemy.y);
@@ -14,7 +12,6 @@ void debugPrint(uint32_t *currentFps, uint32_t *lastFps, int flags)
 		fflush(stdout);
 		*currentFps = 0;
 		*lastFps = SDL_GetTicks();
-	}
 }
 
 
