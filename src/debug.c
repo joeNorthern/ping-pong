@@ -2,18 +2,28 @@
 #include "ball.h"
 #include "paddles.h"
 
+unsigned int printableFps = 0;
+
 void debugPrint(uint32_t *currentFps, uint32_t *lastFps, int flags)
 {
 		putchar('\r');
-		if(flags & DEBUG_FPS_ONLY) printf("FPS: %d ", *currentFps);
+		if(flags & DEBUG_FPS_ONLY) { getFps(currentFps, lastFps); printf("FPS: %d ", printableFps); } 
 		if(flags & DEBUG_YAXIS_ONLY) printf("PLAYER: %d ENEMY: %d ", player.y, enemy.y);
 		if(flags & DEBUG_BALL_HITPOS) printf("HIT_POS: %.f BALL_Y: %d ", hitPos, ball.y);
 		printf("                             ");
 		fflush(stdout);
-		*currentFps = 0;
-		*lastFps = SDL_GetTicks();
 }
 
+
+void getFps(uint32_t *currentFps, uint32_t *lastFps)
+{
+    if((SDL_GetTicks() - *lastFps) >= 1000)
+	{
+		printableFps = *currentFps;
+		*currentFps = 0;
+		*lastFps = SDL_GetTicks();
+	}
+}
 
 // USAGE
 // This debugPrint uses flags that specify what you want to be debugged;
