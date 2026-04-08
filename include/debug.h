@@ -14,5 +14,6 @@ extern SDL_Rect ball;
 #define DEBUG_ALL   DEBUG_FPS_ONLY | DEBUG_YAXIS_ONLY | DEBUG_BALL_HITPOS
 
 void debugPrint(uint32_t *, uint32_t *, int);
+void getFps(uint32_t *, uint32_t *);
 
 #endif
