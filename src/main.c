@@ -4,7 +4,7 @@
 #include "../include/paddles.h"
 #include "../include/ball.h"
 #include "../include/debug.h"
-//#define DEBUG 0
+#define DEBUG 0
 
 const int Y_AXIS = 1000;
 const int X_AXIS = 1000;

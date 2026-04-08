@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include "debug.h"
 
 extern SDL_Rect player;
 extern SDL_Rect enemy;
